@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+
+# Nx
+.nx/installation
+.nx/cache
+.nx/workspace-data
+
+# Angular
+.angular
+
+# Build outputs
+dist
+tmp
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
