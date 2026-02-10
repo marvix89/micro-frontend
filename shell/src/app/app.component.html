@@ -1,2 +1,13 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<div class="shell-container">
+  <header class="shell-header">
+    <h1>🏠 Shell Application</h1>
+    <nav class="shell-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a routerLink="/mfe-app" routerLinkActive="active">MFE App</a>
+    </nav>
+  </header>
+  
+  <main class="shell-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

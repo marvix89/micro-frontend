@@ -1,0 +1,42 @@
+<div class="test-page">
+  <header class="hero">
+    <h1 class="hero-title">🎯 Microfrontend Test Page</h1>
+    <p class="hero-subtitle">
+      Benvenuto nell'applicazione Angular Microfrontend
+    </p>
+  </header>
+
+  <section class="features">
+    <div class="feature-card" *ngFor="let feature of features">
+      <div class="feature-icon">{{ feature.icon }}</div>
+      <h2 class="feature-title">{{ feature.title }}</h2>
+      <p class="feature-description">{{ feature.description }}</p>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="info-card">
+      <h3>📊 Informazioni Tecniche</h3>
+      <ul>
+        <li><strong>Framework:</strong> Angular 19.1</li>
+        <li><strong>Build Tool:</strong> Nx 22.5</li>
+        <li><strong>Bundler:</strong> Webpack</li>
+        <li><strong>Styling:</strong> CSS Vanilla</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>✨ Caratteristiche</h3>
+      <ul>
+        <li>Componenti Standalone</li>
+        <li>Routing Configurato</li>
+        <li>Design Moderno</li>
+        <li>Pronto per Module Federation</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Creato con ❤️ usando Angular e Nx</p>
+  </footer>
+</div>

@@ -1,29 +1,29 @@
 {
-  "name": "shell",
+  "name": "mfe-app",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "app",
-  "sourceRoot": "shell/src",
+  "prefix": "mfe",
+  "sourceRoot": "mfe-app/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/shell",
-        "index": "shell/src/index.html",
-        "main": "shell/src/main.ts",
+        "outputPath": "dist/mfe-app",
+        "index": "mfe-app/src/index.html",
+        "main": "mfe-app/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "shell/tsconfig.app.json",
+        "tsConfig": "mfe-app/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "shell/public"
+            "input": "mfe-app/public"
           }
         ],
-        "styles": ["shell/src/styles.css"],
+        "styles": ["mfe-app/src/styles.css"],
         "customWebpackConfig": {
-          "path": "shell/webpack.config.ts"
+          "path": "mfe-app/webpack.config.ts"
         }
       },
       "configurations": {
@@ -42,7 +42,7 @@
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "shell/webpack.prod.config.ts"
+            "path": "mfe-app/webpack.prod.config.ts"
           }
         },
         "development": {
@@ -58,25 +58,26 @@
     },
     "serve": {
       "continuous": true,
-      "executor": "@nx/angular:module-federation-dev-server",
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "shell:build:production"
+          "buildTarget": "mfe-app:build:production"
         },
         "development": {
-          "buildTarget": "shell:build:development"
+          "buildTarget": "mfe-app:build:development",
+          "port": 4201
         }
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4200,
-        "publicHost": "http://localhost:4200"
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "shell:build"
+        "buildTarget": "mfe-app:build"
       }
     },
     "lint": {
@@ -86,16 +87,26 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "shell/jest.config.ts",
-        "tsConfig": "shell/tsconfig.spec.json"
+        "jestConfig": "mfe-app/jest.config.ts",
+        "tsConfig": "mfe-app/tsconfig.spec.json"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "shell:build",
-        "spa": true
+        "buildTarget": "mfe-app:build",
+        "port": 4201,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mfe-app:build:development"
+        },
+        "production": {
+          "buildTarget": "mfe-app:build:production"
+        }
       }
     }
   }
