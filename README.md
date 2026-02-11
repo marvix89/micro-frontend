@@ -1,65 +1,72 @@
-# OT Cyber Security Dashboard
-
-**Proprietary Software - Do Not Distribute**
+# Microfrontend Architecture Demo
 
 ## Overview
 
-This project is a **Microfrontend-based Operational Technology (OT) Security Dashboard** designed for monitoring industrial control systems (ICS), PLC, and SCADA environments. It focuses on high availability, safety monitoring, and real-time threat detection.
+This project demonstrates a Microfrontend architecture using **Nx**, **Angular**, and **Webpack Module Federation**. It consists of a Shell application and a remote Microfrontend (MFE) application, both residing in the same Monorepo but deployed independently.
 
-## Architecture
+## 🚀 Live Demo
 
-The project is built as a Monorepo using **Nx** and **Webpack Module Federation**.
+| Application | URL                                                                                          | Description                                              |
+| ----------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **Shell**   | [https://micro-frontend-shell-pink.vercel.app](https://micro-frontend-shell-pink.vercel.app) | The host application that loads the remote MFE.          |
+| **MFE App** | [https://micro-frontend-ten.vercel.app](https://micro-frontend-ten.vercel.app)               | The remote microfrontend application running standalone. |
 
-- **Shell (Host)**: Angular application acting as the main container. Responsible for:
-  - Authentication & Routing
-  - Asset Inventory (PLC, RTU, HMI)
-  - Zone Management (Purdue Model)
-  - Incident Response
-- **Remote (Microfrontend)**: React application for advanced data visualization. Responsible for:
-  - Industrial Analytics
-  - Protocol Traffic Charts (Modbus, Profinet)
-  - Operational Risk KPIs
+## 🏗️ Architecture
 
-## Tech Stack
+- **Shell (Host)**: Angular application that acts as the container. It loads the `mfe-app` at runtime using Module Federation.
+- **MFE App (Remote)**: Angular application that exposes components (e.g., `Routes`) to be consumed by the Shell.
 
-- **Nx**: Monorepo management and build tool.
-- **Angular**: Shell application framework.
-- **React**: Remote application library.
-- **Module Federation**: Microfrontend integration strategy.
-- **MSW (Mock Service Worker)**: Network-level API mocking for realistic development and testing.
+## 🛠️ Tech Stack
 
-## Prerequisites
+- **Nx**: Build system and Monorepo management.
+- **Angular**: Framework for both Shell and MFE.
+- **Webpack Module Federation**: Enables sharing code and dynamic loading of microfrontends.
+- **Vercel**: Hosting platform with conditional build configuration.
 
-- Node.js (v18+)
-- NPM
-- Nx CLI (`npm install -g nx`)
+## 📦 Vercel Deployment
 
-## Getting Started
+This repository uses a **Conditional Build Strategy** to deploy multiple applications from the same Monorepo to Vercel projects.
 
-1.  **Install Dependencies**:
+### How it works
 
-    ```bash
-    npm install
-    ```
+A custom script [`build-for-vercel.js`](./build-for-vercel.js) is used as the Build Command in `vercel.json`. It looks for an environment variable `APP_TO_BUILD` to determine which application to build.
 
-2.  **Start the Platform**:
-    This command serves the Shell, the Remote, and initializes the MSW mock worker.
+### Configuration
 
-    ```bash
-    npx nx serve shell
-    ```
+To deploy a new instance or fix a deployment, ensure the following **Environment Variables** are set in the Vercel Project Settings:
 
-3.  **Access**:
-    Open your browser at `http://localhost:4200`.
+#### 1. MFE App Project (`micro-frontend-ten`)
 
-## Development
+- **Environment Variable**: `APP_TO_BUILD = mfe-app`
+- **Output Directory**: `dist/mfe-app` (Set in Project Settings > Build & Development Settings)
 
-- **Run Shell only**: `npx nx serve shell`
-- **Run Remote only**: `npx nx serve remoteReact`
-- **Lint**: `npx nx lint shell` / `npx nx lint remoteReact`
-- **Test**: `npx nx test shell` / `npx nx test remoteReact`
+#### 2. Shell Project (`micro-frontend-shell-pink`)
 
-## License
+- **Environment Variable**: `APP_TO_BUILD = shell`
+- **Output Directory**: `dist/shell` (Set in Project Settings > Build & Development Settings)
 
-**Copyright (c) 2026. All rights reserved.**
-Unauthorized copying, modification, distribution, or use of this software is strictly prohibited. See the [LICENSE](LICENSE) file for details.
+## 💻 Local Development
+
+1. **Install Dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+2. **Start the Shell** (loads MFE automatically):
+
+   ```bash
+   npx nx serve shell
+   ```
+
+   Open `http://localhost:4200`
+
+3. **Start MFE Standalone**:
+   ```bash
+   npx nx serve mfe-app
+   ```
+   Open `http://localhost:4201`
+
+## 📄 License
+
+MIT
