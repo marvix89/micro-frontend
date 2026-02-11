@@ -49,27 +49,18 @@ try {
   execSync(config.command, { stdio: 'inherit' });
   
   // Verify the output directory exists
-  if (!fs.existsSync(config.outputDir)) {
+  const outputPath = path.join(process.cwd(), config.outputDir);
+  if (!fs.existsSync(outputPath)) {
     console.error(`\n❌ Error: Output directory not found: ${config.outputDir}`);
     process.exit(1);
   }
   
-  // Copy the built files to 'dist' directory for Vercel
-  const distPath = path.join(process.cwd(), 'dist');
-  
-  // Remove existing dist directory if it exists
-  if (fs.existsSync(distPath)) {
-    fs.rmSync(distPath, { recursive: true, force: true });
-  }
-  
-  // Copy the app-specific dist folder to the root dist folder
-  const sourcePath = path.join(process.cwd(), config.outputDir);
-  fs.cpSync(sourcePath, distPath, { recursive: true });
-  
   console.log(`\n✅ Build completed successfully!`);
-  console.log(`📦 Output copied from ${config.outputDir} to dist/`);
+  console.log(`📦 Output directory: ${config.outputDir}`);
+  console.log(`📁 Files will be served from: ${config.outputDir}`);
   
 } catch (error) {
   console.error(`\n❌ Build failed:`, error.message);
   process.exit(1);
 }
+
