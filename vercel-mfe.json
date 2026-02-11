@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run build:mfe:prod",
-  "outputDirectory": "dist/mfe-app/browser",
+  "outputDirectory": "dist/mfe-app",
   "installCommand": "npm install",
   "framework": null,
   "rewrites": [

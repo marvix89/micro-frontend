@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run build:shell:prod",
-  "outputDirectory": "dist/shell/browser",
+  "outputDirectory": "dist/shell",
   "installCommand": "npm install",
   "framework": null,
   "rewrites": [
