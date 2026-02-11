@@ -21,10 +21,9 @@ console.log(`📦 APP_TO_BUILD environment variable: ${appToBuild}\n`);
 
 const buildConfigs = {
   'mfe-app': {
-    // SIMULATED FAILURE: Creating a dummy deployment without remoteEntry.js
-    command: 'node -e "const fs = require(\'fs\'); fs.mkdirSync(\'dist/mfe-app\', {recursive: true}); fs.writeFileSync(\'dist/mfe-app/index.html\', \'<h1>MFE Service Unavailable (Simulation)</h1>\');"',
+    command: 'npm run build:mfe:prod',
     outputDir: 'dist/mfe-app',
-    name: 'MFE App (BROKEN BUILD SIMULATION)'
+    name: 'MFE App'
   },
   'shell': {
     command: 'npm run build:shell:prod',
