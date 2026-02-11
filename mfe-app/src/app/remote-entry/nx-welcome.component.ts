@@ -126,7 +126,7 @@ import { CommonModule } from '@angular/common';
       }
       #hero {
         align-items: center;
-        background-color: hsla(214, 62%, 21%, 1);
+        background-color: hsla(0, 70%, 40%, 1);
         border: none;
         box-sizing: border-box;
         color: rgba(55, 65, 81, 1);
@@ -511,7 +511,7 @@ import { CommonModule } from '@angular/common';
         <div id="welcome">
           <h1>
             <span> Hello there, </span>
-            Welcome mfe-app 👋
+            Welcome MFE-APP (REMOTE) 👋
           </h1>
         </div>
         <!--  HERO  -->
