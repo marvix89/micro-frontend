@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve shell",
-    "build": "nx build shell"
+    "build": "nx build shell",
+    "build:shell:prod": "nx build shell --configuration=production",
+    "build:mfe:prod": "nx build mfe-app --configuration=production"
   },
   "private": true,
   "dependencies": {
