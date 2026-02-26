@@ -60,6 +60,19 @@ try {
     process.exit(1);
   }
   
+  // Copy production configuration file for Vercel
+  if (appToBuild === 'shell') {
+    const configPath = path.join(outputPath, 'config.json');
+    const sourceConfig = path.join(process.cwd(), 'config', 'prod', 'config.json');
+    if (fs.existsSync(sourceConfig)) {
+      fs.copyFileSync(sourceConfig, configPath);
+      console.log(`\n✅ Copied config.prod.json to ${configPath}`);
+    } else {
+      console.error(`\n❌ Error: config.prod.json not found in config/ directory!`);
+      process.exit(1);
+    }
+  }
+
   console.log(`\n✅ Build completed successfully!`);
   console.log(`📦 Output directory: ${config.outputDir}`);
   console.log(`📁 Files will be served from: ${config.outputDir}`);

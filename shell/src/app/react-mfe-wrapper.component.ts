@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { createRoot, Root } from 'react-dom/client';
 import { createElement } from 'react';
+import { ConfigService } from './config.service';
 
 import { loadRemote, registerRemotes } from '@module-federation/enhanced/runtime';
 
@@ -20,11 +21,13 @@ export class ReactMfeWrapperComponent implements AfterViewInit, OnDestroy {
 
   private root: Root | null = null;
 
+  constructor(private configService: ConfigService) {}
+
   async ngAfterViewInit() {
     registerRemotes([
       {
         name: 'react_mfe',
-        entry: 'http://localhost:4202/remoteEntry.js',
+        entry: this.configService.getConfig().reactMfeUrl,
         type: 'var'
       }
     ]);

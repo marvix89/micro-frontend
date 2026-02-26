@@ -1,5 +1,9 @@
 import { Route } from '@angular/router';
 
+import { loadRemote, registerRemotes } from '@module-federation/enhanced/runtime';
+import { inject } from '@angular/core';
+import { ConfigService } from './config.service';
+
 export const appRoutes: Route[] = [
   {
     path: '',
@@ -8,7 +12,22 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'mfe-app',
-    loadChildren: () => import('mfe_app/Routes').then((m) => m!.remoteRoutes),
+    loadChildren: () => {
+      const configService = inject(ConfigService);
+      registerRemotes([
+        {
+          name: 'mfe_app',
+          entry: configService.getConfig().angularMfeUrl,
+          type: 'module'
+        }
+      ]);
+      return loadRemote<any>('mfe_app/Routes')
+        .then((m) => m!.remoteRoutes)
+        .catch(err => {
+          console.error("Failed to load mfe-app", err);
+          return [];
+        });
+    },
   },
   {
     path: 'react-mfe',

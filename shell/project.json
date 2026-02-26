@@ -51,7 +51,18 @@
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
-          "namedChunks": true
+          "namedChunks": true,
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "shell/public"
+            },
+            {
+              "glob": "config.json",
+              "input": "config/dev",
+              "output": "/"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
