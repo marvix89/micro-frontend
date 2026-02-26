@@ -1,7 +1,7 @@
 import { ModuleFederationConfig } from '@nx/module-federation';
 
 const config: ModuleFederationConfig = {
-  name: 'react_mfe',
+  name: 'react-mfe',
   exposes: {
     './App': './src/app/App',
   },
