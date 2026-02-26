@@ -1,0 +1,78 @@
+{
+  "name": "react-mfe",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "react-mfe/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/react-mfe",
+        "index": "react-mfe/src/index.html",
+        "baseHref": "/",
+        "main": "react-mfe/src/main.tsx",
+        "tsConfig": "react-mfe/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "react-mfe/public",
+            "output": "."
+          }
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "react-mfe/webpack.config.ts"
+      },
+      "configurations": {
+        "production": {
+          "webpackConfig": "react-mfe/webpack.prod.config.ts"
+        },
+        "development": {}
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "react-mfe:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "react-mfe:build:development",
+          "port": 4202
+        },
+        "production": {
+          "buildTarget": "react-mfe:build:production",
+          "port": 4202
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "react-mfe:build",
+        "port": 4202,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "react-mfe:build:development"
+        },
+        "production": {
+          "buildTarget": "react-mfe:build:production"
+        }
+      }
+    }
+  }
+}

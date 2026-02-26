@@ -10,4 +10,11 @@ export const appRoutes: Route[] = [
     path: 'mfe-app',
     loadChildren: () => import('mfe_app/Routes').then((m) => m!.remoteRoutes),
   },
+  {
+    path: 'react-mfe',
+    loadComponent: () =>
+      import('./react-mfe-wrapper.component').then(
+        (m) => m.ReactMfeWrapperComponent
+      ),
+  },
 ];

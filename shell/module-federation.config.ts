@@ -14,7 +14,10 @@ const config: ModuleFederationConfig = {
    * declare module 'my-external-remote';
    *
    */
-  remotes: ['mfe-app'],
+  remotes: [
+    'mfe-app',
+    ['react_mfe', 'http://localhost:4202/remoteEntry.js']
+  ],
 };
 
 /**
