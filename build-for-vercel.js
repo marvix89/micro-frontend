@@ -66,9 +66,9 @@ try {
     const sourceConfig = path.join(process.cwd(), 'config', 'prod', 'config.json');
     if (fs.existsSync(sourceConfig)) {
       fs.copyFileSync(sourceConfig, configPath);
-      console.log(`\n✅ Copied config.prod.json to ${configPath}`);
+      console.log(`\n✅ Copied config/prod/config.json to ${configPath}`);
     } else {
-      console.error(`\n❌ Error: config.prod.json not found in config/ directory!`);
+      console.error(`\n❌ Error: config.json not found in config/prod/ directory!`);
       process.exit(1);
     }
   }
