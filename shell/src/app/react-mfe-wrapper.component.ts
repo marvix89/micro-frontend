@@ -24,7 +24,7 @@ export class ReactMfeWrapperComponent implements AfterViewInit, OnDestroy {
     registerRemotes([
       {
         name: 'react_mfe',
-        entry: 'http://localhost:4202/react-mfe/remoteEntry.js',
+        entry: 'http://localhost:4202/remoteEntry.js',
         type: 'var'
       }
     ]);
