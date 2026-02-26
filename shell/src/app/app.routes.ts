@@ -13,20 +13,24 @@ export const appRoutes: Route[] = [
   {
     path: 'mfe-app',
     loadChildren: () => {
+      // Grab the ConfigService explicitly in the injection context before returning the Promise
       const configService = inject(ConfigService);
-      registerRemotes([
-        {
-          name: 'mfe_app',
-          entry: configService.getConfig().angularMfeUrl,
-          type: 'module'
-        }
-      ]);
-      return loadRemote<any>('mfe_app/Routes')
-        .then((m) => m!.remoteRoutes)
-        .catch(err => {
-          console.error("Failed to load mfe-app", err);
-          return [];
-        });
+      
+      return Promise.resolve().then(() => {
+        registerRemotes([
+          {
+            name: 'mfe_app',
+            entry: configService.getConfig().angularMfeUrl + '/remoteEntry.js',
+            type: 'module'
+          }
+        ]);
+        return loadRemote<any>('mfe_app/Routes')
+          .then((m) => m!.remoteRoutes)
+          .catch(err => {
+            console.error("Failed to load mfe-app", err);
+            return [];
+          });
+      });
     },
   },
   {
