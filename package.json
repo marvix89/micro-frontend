@@ -14,7 +14,8 @@
     "test:all": "nx run-many --target=test --projects=shell,mfe-app,react-mfe --parallel",
     "build": "nx build shell",
     "build:shell:prod": "nx build shell --configuration=production",
-    "build:mfe:prod": "nx build mfe-app --configuration=production"
+    "build:mfe:prod": "nx build mfe-app --configuration=production",
+    "build:react-mfe:prod": "nx build react-mfe --configuration=production"
   },
   "private": true,
   "dependencies": {

@@ -29,6 +29,11 @@ const buildConfigs = {
     command: 'npm run build:shell:prod',
     outputDir: 'dist/shell',
     name: 'Shell'
+  },
+  'react-mfe': {
+    command: 'npm run build:react-mfe:prod',
+    outputDir: 'dist/react-mfe',
+    name: 'React MFE'
   }
 };
 
