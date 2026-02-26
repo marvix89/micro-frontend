@@ -60,17 +60,19 @@ try {
     process.exit(1);
   }
   
-  // Copy production configuration file for Vercel
+  // Dynamic Configuration Generation for Vercel
   if (appToBuild === 'shell') {
     const configPath = path.join(outputPath, 'config.json');
-    const sourceConfig = path.join(process.cwd(), 'config', 'prod', 'config.json');
-    if (fs.existsSync(sourceConfig)) {
-      fs.copyFileSync(sourceConfig, configPath);
-      console.log(`\n✅ Copied config/prod/config.json to ${configPath}`);
-    } else {
-      console.error(`\n❌ Error: config.json not found in config/prod/ directory!`);
-      process.exit(1);
+    // On Vercel, the /config directory is gitignored, so we MUST generate this from Envs
+    const appConfig = {
+      reactMfeUrl: process.env.REACT_MFE_URL,
+      angularMfeUrl: process.env.ANGULAR_MFE_URL
+    };
+    if (!appConfig.reactMfeUrl || !appConfig.angularMfeUrl) {
+      console.warn("⚠️ Warning: REACT_MFE_URL or ANGULAR_MFE_URL environment variables are missing!");
     }
+    fs.writeFileSync(configPath, JSON.stringify(appConfig, null, 2));
+    console.log(`\n✅ Generated runtime config.json in ${configPath}`);
   }
 
   console.log(`\n✅ Build completed successfully!`);
