@@ -2,6 +2,7 @@
   "name": "micro-frontend",
   "version": "0.0.0",
   "license": "MIT",
+  "packageManager": "pnpm@10.5.2",
   "scripts": {
     "start": "nx serve shell",
     "start:shell": "nx serve shell",

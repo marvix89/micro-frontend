@@ -21,17 +21,17 @@ console.log(`📦 APP_TO_BUILD environment variable: ${appToBuild}\n`);
 
 const buildConfigs = {
   'mfe-app': {
-    command: 'npm run build:mfe:prod',
+    command: 'pnpm run build:mfe:prod',
     outputDir: 'dist/mfe-app',
     name: 'MFE App'
   },
   'shell': {
-    command: 'npm run build:shell:prod',
+    command: 'pnpm run build:shell:prod',
     outputDir: 'dist/shell',
     name: 'Shell'
   },
   'react-mfe': {
-    command: 'npm run build:react-mfe:prod',
+    command: 'pnpm run build:react-mfe:prod',
     outputDir: 'dist/react-mfe',
     name: 'React MFE'
   }

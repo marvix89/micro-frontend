@@ -1,6 +1,6 @@
 {
   "buildCommand": "node build-for-vercel.js",
-  "installCommand": "npm install",
+  "installCommand": "pnpm install --frozen-lockfile",
   "framework": null,
   "rewrites": [
     {
