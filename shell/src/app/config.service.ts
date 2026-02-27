@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { AppConfig } from './config.model';
+import { registerRemotes } from '@module-federation/enhanced/runtime';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +19,24 @@ export class ConfigService {
       console.warn('Failed to load /config.json. Defaulting to empty config.', err);
       this.config = {
         reactMfeUrl: 'http://localhost:4202/remoteEntry.js',
-        angularMfeUrl: 'http://localhost:4201/remoteEntry.js'
+        angularMfeUrl: 'http://localhost:4201'
       };
     }
+
+    // Register dynamic remotes globally using the modern API
+    registerRemotes([
+      {
+        name: 'react_mfe',
+        entry: this.config.reactMfeUrl,
+        type: 'module'
+      },
+      {
+        name: 'mfe-app',
+        // Nx 17+ può anche generare un 'mf-manifest.json' o 'remoteEntry.mjs', ma proviamo con .js come richiesto
+        entry: this.config.angularMfeUrl + '/remoteEntry.js',
+        type: 'module'
+      }
+    ]);
   }
 
   public getConfig(): AppConfig {
