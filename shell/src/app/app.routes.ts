@@ -20,7 +20,7 @@ export const appRoutes: Route[] = [
         registerRemotes([
           {
             name: 'mfe_app',
-            entry: configService.getConfig().angularMfeUrl + '/remoteEntry.js',
+            entry: configService.getConfig().angularMfeUrl + '/remoteEntry.mjs',
             type: 'module'
           }
         ]);
