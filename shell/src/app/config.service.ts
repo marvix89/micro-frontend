@@ -28,7 +28,7 @@ export class ConfigService {
       {
         name: 'react_mfe',
         entry: this.config.reactMfeUrl,
-        type: 'module'
+        type: 'var' // React Webpack remotes usually use 'var'
       },
       {
         name: 'mfe-app',

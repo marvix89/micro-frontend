@@ -9,7 +9,7 @@ import { createRoot, Root } from 'react-dom/client';
 import { createElement } from 'react';
 import { ConfigService } from './config.service';
 
-import { loadRemote, registerRemotes } from '@module-federation/enhanced/runtime';
+import { loadRemote } from '@module-federation/enhanced/runtime';
 
 @Component({
   selector: 'app-react-mfe-wrapper',
@@ -24,14 +24,6 @@ export class ReactMfeWrapperComponent implements AfterViewInit, OnDestroy {
   constructor(private configService: ConfigService) {}
 
   async ngAfterViewInit() {
-    registerRemotes([
-      {
-        name: 'react_mfe',
-        entry: this.configService.getConfig().reactMfeUrl,
-        type: 'var'
-      }
-    ]);
-    
     // Dynamically import the React component from the remote
     const m = await loadRemote<any>('react_mfe/App');
     const App = m.default;
