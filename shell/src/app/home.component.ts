@@ -14,13 +14,9 @@ import { Component } from '@angular/core';
         <div class="tech-stack-cards">
           <div class="tech-card">
             <div class="logo-wrapper nx-logo">
-              <svg width="60" height="60" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M120 60C120 93.1371 93.1371 120 60 120C26.8629 120 0 93.1371 0 60C0 26.8629 26.8629 0 60 0C93.1371 0 120 26.8629 120 60Z" fill="#0F172A"/>
-                <path d="M50.4851 86.8407H40.2307L22.6152 48.7107H33.2536L45.4542 75.3406L63.5015 48.7107H73.7431L50.4851 86.8407Z" fill="white"/>
-                <path d="M86.8524 86.8407H76.214L63.6372 65.5262L69.3789 57.0784L86.8524 86.8407Z" fill="white"/>
-                <path d="M36.1423 33.1592H46.3986L64.0123 71.2892H53.3758L41.1733 44.6593L23.1259 71.2892H12.8843L36.1423 33.1592Z" fill="white"/>
-                <path d="M72.8258 54.4737L67.0822 62.9215L49.6106 33.1592H60.2489L72.8258 54.4737Z" fill="white"/>
-                <path d="M97.3853 48.7107H86.7469L80.6074 58.98L86.3427 68.7909L97.3853 48.7107Z" fill="white"/>
+              <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.987 14.138l-3.13-5.32 1.942-3.328 4.298 7.37-3.11 1.278z" fill="#0F172A"/>
+                <path d="M11.987 14.138l3.13-5.32-1.942-3.328-4.298 7.37 3.11 1.278z" fill="#0F172A"/>
               </svg>
             </div>
             <h3>Orchestration</h3>
@@ -29,7 +25,7 @@ import { Component } from '@angular/core';
 
           <div class="tech-card">
             <div class="logo-wrapper angular-logo">
-               <svg width="60" height="60" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+               <svg width="100%" height="100%" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
                   <path fill="#DD0031" d="M125 30L31.9 63.2l14.2 123.1L125 230l78.9-43.7 14.2-123.1z"/>
                   <path fill="#C3002F" d="M125 30v22.2-.1V230l78.9-43.7 14.2-123.1L125 30z"/>
                   <path fill="#FFFFFF" d="M125 52.1L66.8 182.6h21.7l11.7-29.2h49.4l11.7 29.2H183L125 52.1zm17 83.3h-34l17-40.9 17 40.9z"/>
@@ -41,7 +37,7 @@ import { Component } from '@angular/core';
 
           <div class="tech-card">
             <div class="logo-wrapper react-logo">
-              <svg width="60" height="60" viewBox="-11.5 -10.23174 23 20.46348" xmlns="http://www.w3.org/2000/svg">
+              <svg width="100%" height="100%" viewBox="-11.5 -10.23174 23 20.46348" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
                 <g stroke="#61dafb" stroke-width="1" fill="none">
                   <ellipse rx="11" ry="4.2"/>
@@ -55,14 +51,6 @@ import { Component } from '@angular/core';
           </div>
         </div>
 
-        <div class="action-buttons">
-          <a routerLink="/mfe-app" class="btn primary-btn">
-            <span class="btn-icon">🅰️</span> Esplora Angular MFE
-          </a>
-          <a routerLink="/react-mfe" class="btn secondary-btn">
-             <span class="btn-icon">⚛️</span> Esplora React MFE
-          </a>
-        </div>
       </div>
     </div>
   `,
@@ -119,9 +107,10 @@ import { Component } from '@angular/core';
       box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     }
     .logo-wrapper {
-      height: 80px;
-      width: 80px;
+      height: 120px;
+      width: 120px;
       margin: 0 auto 1.5rem auto;
+      padding: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
